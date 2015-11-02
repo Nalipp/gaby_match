@@ -1,29 +1,29 @@
-<h1 class="well">Gaby Teachers <%= link_to "+", new_teacher_path %></h1>
+<h1 class="well"><%= link_to "Gaby Teachers +", new_teacher_path %></h1>
 <div class="container">
   <% @teachers.each do |teacher| %>
-    <div class="col-md-12">
-      <h1><%= teacher.name %></h1>
-      <hr>
+    <div class="col-md-12"><hr>
+      <h1><%= link_to teacher.name, teacher_path(teacher) %></h1>
+    <div class="col-md-3">
+        <% if teacher.picture? %>
+        <%= image_tag teacher.picture.url %>
+        <% else %>
+          <%= link_to image_tag("placeholder.jpg") %>
+        <% end %>
+      <div class="container">
+        <div class="thumbs">
+          <%= link_to "" do %>
+            <i class="glyphicon glyphicon-thumbs-up"></i>
+          <% end %>
+          <%= link_to "" do %>
+            <i class="glyphicon glyphicon-thumbs-down"></i>
+          <% end %>
+        </div>
+      </div>
     </div>
-    <div class="col-md-4">
-      <h3>skills :</h3>
-      <h4> + <%= teacher.skill_1 %></h4>
-      <h4> + <%= teacher.skill_2 %></h4>
-      <h4> + <%= teacher.skill_3 %></h4>
-    </div>
-    <div class="col-md-8">
-      <h3>About me :</h3>
-      <h4><%= teacher.description %></h4>
-    </div>
-    <div class="col-md-12">
-      <br>
-      <h3>Availability :</h3>
-      <h4><%= teacher.availability %></h4>
-    </div>
-    <div class="col-md-12">
+    <div class="col-md-9">
+      <h3 class="inline-block-left">Availability : </h3> <p class="inline-block-right"><%= teacher.availability %></p>
       <h3>Hour Price : $<%= teacher.price %></h3>
-      <br>
-      <hr>
     </div>
+  </div>
   <% end %>
 </div>
